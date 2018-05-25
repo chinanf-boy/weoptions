@@ -1,4 +1,4 @@
-# weoptions [![Build Status](https://travis-ci.org/chinanf-boy/weoptions.svg?branch=master)](https://travis-ci.org/chinanf-boy/weoptions) [![codecov](https://codecov.io/gh/chinanf-boy/weoptions/badge.svg?branch=master)](https://codecov.io/gh/chinanf-boy/weoptions?branch=master) [![explain](http://llever.com/explain.svg)](https://github.com/chinanf-boy/weoptions-explain)
+# weoptions [![Build Status](https://travis-ci.org/chinanf-boy/weoptions.svg?branch=master)](https://travis-ci.org/chinanf-boy/weoptions) [![codecov](https://codecov.io/gh/chinanf-boy/weoptions/badge.svg?branch=master)](https://codecov.io/gh/chinanf-boy/weoptions?branch=master)
 
 > 我想要有个公共 `options`, 但可以通过不同的`ID`, just `init/get/set`
 
@@ -28,18 +28,19 @@ let options = {
 	},
 	// ...
 };
-weoptions.init(options);
+
+let w = weoptions(options);
 // init
 
-weoptoins.set('a.b.c', 2); //
+w.set('a.b.c', 2); //
 // true
-weoptoins.set('a.b.e.d', 2); //
+w.set('a.b.e.d', 2); //
 // if strict == false, create e d, set d=2
 
-weoptoins.get();
+w.get();
 // options
 // or
-weoptoins.get('a.b.c');
+w.get('a.b.c');
 // 2
 ```
 
@@ -56,13 +57,14 @@ weoptoins.get('a.b.c');
 
 #### strict
 
-| name:    | strict                                                                                                       |
-| -------- | ------------------------------------------------------------------------------------------------------------ |
-| Type:    | `boolean`                                                                                                    |
-| Default: | `false`                                                                                                      |
-| Desc:    | the `strict` of your options, if `true`, anything after `options.init` options add/remove will `throw Error` |
+| name:                         | strict                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------- |
+| Type:                         | `boolean`                                                                   |
+| Default:                      | `false`                                                                     |
+| Desc:                         | the `strict` of your options, if `true`, anything after `WEOPTIONS(options) |
+| `add/remove will`throw Error` |
 
-### - WEOPTIONS.init(options)
+### - WEOPTIONS(options)
 
 #### options
 
