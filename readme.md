@@ -52,7 +52,7 @@ w.get('a.b.c');
 
 | name: | id                                                                              |
 | ----- | ------------------------------------------------------------------------------- |
-| Type: | `string`\|`function`                                                            |
+| Type: | `string`                                                                        |
 | Desc: | the id of your options, just like [debug](https://github.com/visionmedia/debug) |
 
 #### strict
@@ -64,7 +64,7 @@ w.get('a.b.c');
 | Desc:                         | the `strict` of your options, if `true`, anything after `WEOPTIONS(options) |
 | `add/remove will`throw Error` |
 
-### - WEOPTIONS(options)
+### - WEOPTIONS(options):W
 
 #### options
 
@@ -73,7 +73,7 @@ w.get('a.b.c');
 | Type: | `any`        |
 | Desc: | options init |
 
-### - WEOPTIONS.set(position, value)
+### - W.set(position, value)
 
 #### position
 
@@ -89,7 +89,7 @@ w.get('a.b.c');
 | Type: | `any`         |
 | Desc: | options value |
 
-### - WEOPTIONS.get(position)
+### - W.get(position)
 
 #### position
 

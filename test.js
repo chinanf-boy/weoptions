@@ -1,16 +1,18 @@
 import test from 'ava';
 import m from '.';
 
-test.failing('title', t => {
-	let options = {
-		name: 'yobrave',
-		a: {
-			b: {
-				c: 1,
-			},
+let Options = {
+	name: 'yobrave',
+	a: {
+		b: {
+			c: 1,
 		},
-		// ...
-	};
+	},
+	// ...
+};
+
+test.failing('title', t => {
+	let options = Object.assign({}, Options);
 
 	let w = m(123)(options);
 	// init
@@ -20,15 +22,7 @@ test.failing('title', t => {
 });
 
 test('init', t => {
-	let options = {
-		name: 'yobrave',
-		a: {
-			b: {
-				c: 1,
-			},
-		},
-		// ...
-	};
+	let options = Object.assign({}, Options);
 
 	let w = m('123')(options);
 	// init
@@ -39,15 +33,7 @@ test('init', t => {
 });
 
 test('init strict', t => {
-	let options = {
-		name: 'yobrave',
-		a: {
-			b: {
-				c: 1,
-			},
-		},
-		// ...
-	};
+	let options = Object.assign({}, Options);
 
 	let w = m('123', true)(options);
 	// init
@@ -58,15 +44,7 @@ test('init strict', t => {
 });
 
 test('get all', t => {
-	let options = {
-		name: 'yobrave',
-		a: {
-			b: {
-				c: 1,
-			},
-		},
-		// ...
-	};
+	let options = Object.assign({}, Options);
 
 	let w = m('123')(options);
 	// init
@@ -77,59 +55,47 @@ test('get all', t => {
 	t.deepEqual(g, nO);
 });
 
-// test("get details", t=>{
+test('get details', t => {
+	let options = Object.assign({}, Options);
 
-// 	let options = {
-// 		name: 'yobrave',
-// 		a: {
-// 			b: {
-// 				c: 1,
-// 			},
-// 		},
-// 		// ...
-// 	};
+	let w = m('123')(options);
+	// init
+	let r = w.get('name');
+	t.is(r, 'yobrave');
+});
 
-// 	let w = m("123")(options);
-// 	// init
-// 	console.log(w)
+test('set with create strict=false, return set new value', t => {
+	let options = Object.assign({}, Options);
 
-// 	t.is(w.get(), true);
-// })
+	let w = m('123')(options);
+	// init
+	let setV = 'set with create strict=false';
 
-// test("set with create strict=false", t=>{
+	let res = w.set('c.s', setV);
 
-// 	let options = {
-// 		name: 'yobrave',
-// 		a: {
-// 			b: {
-// 				c: 1,
-// 			},
-// 		},
-// 		// ...
-// 	};
+	t.is(res, setV);
+});
 
-// 	let w = m("123")(options);
-// 	// init
-// 	console.log(w)
+test('set with edit strict=true, return set new value', t => {
+	let options = Object.assign({}, Options);
 
-// 	t.is(w.get(), true);
-// })
+	let w = m('123')(options);
+	// init
+	let same = 'set with edit strict=true';
 
-// test.failing("set with create strict=true", t=>{
+	let res = w.set('a.b.c', same);
 
-// 	let options = {
-// 		name: 'yobrave',
-// 		a: {
-// 			b: {
-// 				c: 1,
-// 			},
-// 		},
-// 		// ...
-// 	};
+	t.is(res, same);
+});
 
-// 	let w = m("123")(options);
-// 	// init
-// 	console.log(w)
+test.failing('set with create strict=true, throw', t => {
+	let options = Object.assign({}, Options);
 
-// 	t.is(w.get(), true);
-// })
+	let w = m('123', true)(options);
+	// init
+	let setV = 'set with create strict=true, throw';
+
+	let res = w.set('c.s', setV);
+
+	t.is(res, setV);
+});
