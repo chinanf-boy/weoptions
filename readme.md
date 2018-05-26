@@ -57,12 +57,12 @@ w.get('a.b.c');
 
 #### strict
 
-| name:                         | strict                                                                      |
-| ----------------------------- | --------------------------------------------------------------------------- |
-| Type:                         | `boolean`                                                                   |
-| Default:                      | `false`                                                                     |
-| Desc:                         | the `strict` of your options, if `true`, anything after `WEOPTIONS(options) |
-| `add/remove will`throw Error` |
+| name:    | strict                                                                          |
+| -------- | ------------------------------------------------------------------------------- |
+| Type:    | `boolean`                                                                       |
+| Default: | `false`                                                                         |
+| Desc:    | the `strict` of your options                                                    |
+| ⚠️:      | if `true`, anything after WEOPTIONS(options) `add/remove/new` will`throw Error` |  |
 
 ### - WEOPTIONS(options):W
 
@@ -89,6 +89,8 @@ w.get('a.b.c');
 | Type: | `any`         |
 | Desc: | options value |
 
+> use [dset API](https://github.com/lukeed/dset)
+
 ### - W.get(position)
 
 #### position
@@ -97,6 +99,8 @@ w.get('a.b.c');
 | ----- | ---------------- |
 | Type: | `string`         |
 | Desc: | options position |
+
+> use [dlv API](https://github.com/developit/dlv)
 
 ---
 
