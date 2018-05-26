@@ -17,7 +17,8 @@ yarn add weoptions
 ## Usage
 
 ```js
-const weoptions = require('weoptions')('id', false);
+let strict = false;
+const weoptions = require('weoptions')('id', strict);
 
 let options = {
 	name: 'yobrave',
@@ -33,9 +34,11 @@ let w = weoptions(options);
 // init
 
 w.set('a.b.c', 2); //
-// true
+// 2
 w.set('a.b.e.d', 2); //
+// 2
 // if strict == false, create e d, set d=2
+// if strict == true, create e d throw TypeError
 
 w.get();
 // options
