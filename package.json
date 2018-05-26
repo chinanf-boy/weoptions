@@ -1,7 +1,7 @@
 {
 	"name": "weoptions",
 	"version": "0.0.2",
-	"description": "name for options",
+	"description": "global worker options, with id store set/get, that it",
 	"license": "MIT",
 	"repository": "chinanf-boy/weoptions",
 	"author": {
@@ -15,8 +15,6 @@
 	"scripts": {
 		"test": "nyc ava -v -s",
 		"precommit": "lint-staged",
-		"prettier":
-			"prettier --single-quote --trailing-comma es5 --write 'src/**/*.js'",
 		"npmUp": "npm version patch && npm publish",
 		"git": "git push && git push --tags",
 		"pub": "npm run test && npm run npmUp && npm run git"
@@ -37,10 +35,10 @@
 	},
 	"devDependencies": {
 		"ava": "^0.25.0",
-		"codecov": "^2.2.0",
+		"codecov": "^3.0.2",
 		"husky": "^0.14.3",
 		"lint-staged": "^7.0.0",
-		"nyc": "^11.0.0",
+		"nyc": "^11.8.0",
 		"prettier": "^1.12.1"
 	},
 	"nyc": {
