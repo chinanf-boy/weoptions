@@ -4,8 +4,8 @@
 	"description": "global worker options, with id store set/get, that it",
 	"license": "MIT",
 	"repository": "chinanf-boy/weoptions",
-	"main": "dist/weoptions",
-	"module": "dist/weoptions.m",
+	"main": "dist/weoptions.js",
+	"module": "dist/weoptions.m.js",
 	"author": {
 		"name": "chinanf-boy",
 		"email": "865501259@qq.com",
@@ -46,7 +46,8 @@
 		"deep-diff": "^1.0.1",
 		"dlv": "^1.1.1",
 		"dset": "^1.0.1",
-		"validate-switch": "^0.0.2"
+		"validate-switch": "^0.0.2",
+		"weoptions": "^0.0.8"
 	},
 	"devDependencies": {
 		"ava": "^0.25.0",
