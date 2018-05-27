@@ -1,6 +1,6 @@
 {
 	"name": "weoptions",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "global worker options, with id store set/get, that it",
 	"license": "MIT",
 	"repository": "chinanf-boy/weoptions",
@@ -31,10 +31,10 @@
 	},
 	"size-limit": [
 		{
-		  "path": "dist/weoptions.js",
-		  "limit": "2.1 kB"
+			"path": "dist/weoptions.js",
+			"limit": "2.1 kB"
 		}
-	  ],
+	],
 	"files": [
 		"index.js",
 		"dist"
