@@ -17,6 +17,7 @@ yarn add weoptions
 ## Usage
 
 ```js
+// index.js
 let strict = false;
 const weoptions = require('weoptions')('id', strict);
 
@@ -47,9 +48,22 @@ w.get('a.b.c');
 // 2
 ```
 
+```js
+// other.js
+const weoptions = require('weoptions')('id'); // after init
+
+w.get();
+// options
+w.set('a.b.c', 1);
+// 1
+
+w._setStrict(true);
+// change strict with id
+```
+
 ## API
 
-### 1. weoptions(id, strict):WEOPTIONS
+### 1. weoptions(id, strict)
 
 #### id
 
@@ -66,6 +80,13 @@ w.get('a.b.c');
 | Default: | `false`                                                                         |
 | Desc:    | the `strict` of your options                                                    |
 | ⚠️:      | if `true`, anything after WEOPTIONS(options) `add/remove/new` will`throw Error` |  |
+
+#### return
+
+| name: | return                                               |
+| ----- | ---------------------------------------------------- |
+| Type: | `WEOPTIONS` \| `W`                                   |
+| Desc: | if id had init, return `W` , else return `WEOPTIONS` |
 
 ### - WEOPTIONS(options):W
 
@@ -104,6 +125,15 @@ w.get('a.b.c');
 | Desc: | options position |
 
 > use [dlv API](https://github.com/developit/dlv)
+
+### - W.\_setStrict(bool)
+
+#### bool
+
+| name: | bool                    |
+| ----- | ----------------------- |
+| Type: | `boolean`               |
+| Desc: | change `strict` to bool |
 
 ---
 

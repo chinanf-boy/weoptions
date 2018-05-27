@@ -11,17 +11,15 @@ let Options = {
 	// ...
 };
 
-test.failing('title', t => {
+test.failing('id number fail', t => {
 	let options = Object.assign({}, Options);
 
 	let w = m(123)(options);
 	// init
-	console.log(w);
-
 	t.is(w.get(), true);
 });
 
-test('init', t => {
+test('init id:123', t => {
 	let options = Object.assign({}, Options);
 
 	let w = m('123')(options);
@@ -29,10 +27,10 @@ test('init', t => {
 
 	t.is(!!w.get, true);
 	t.is(!!w.set, true);
-	t.is(w.v, undefined);
+	t.is(!!w.S, false);
 });
 
-test('init strict', t => {
+test.failing('init again options id:123 fail', t => {
 	let options = Object.assign({}, Options);
 
 	let w = m('123', true)(options);
@@ -40,13 +38,25 @@ test('init strict', t => {
 
 	t.is(!!w.get, true);
 	t.is(!!w.set, true);
-	t.is(w.v, 1);
+	t.is(!!w.S, true);
 });
 
-test('get all', t => {
+test('init strict again id:123 ', t => {
 	let options = Object.assign({}, Options);
 
-	let w = m('123')(options);
+	let w = m('123');
+	// init
+	w._setStrict(true);
+	// set
+	t.is(!!w.get, true);
+	t.is(!!w.set, true);
+	t.is(!!w.S, true);
+});
+
+test('get all id:123 ', t => {
+	let options = Object.assign({}, Options);
+
+	let w = m('123');
 	// init
 
 	let nO = Object.assign({}, options);
@@ -55,20 +65,22 @@ test('get all', t => {
 	t.deepEqual(g, nO);
 });
 
-test('get details', t => {
+test('get details id:123', t => {
 	let options = Object.assign({}, Options);
 
-	let w = m('123')(options);
+	let w = m('123');
 	// init
 	let r = w.get('name');
 	t.is(r, 'yobrave');
 });
 
-test('set with create strict=false, return set new value', t => {
+test('id:123 set with create strict=false, return set new value', t => {
 	let options = Object.assign({}, Options);
 
-	let w = m('123')(options);
+	let w = m('123');
 	// init
+	w._setStrict(false);
+	// set
 	let setV = 'set with create strict=false';
 
 	let res = w.set('c.s', setV);
@@ -76,10 +88,10 @@ test('set with create strict=false, return set new value', t => {
 	t.is(res, setV);
 });
 
-test('set with edit strict=true, return set new value', t => {
+test('id:222 set with edit strict=true, return set new value', t => {
 	let options = Object.assign({}, Options);
 
-	let w = m('123')(options);
+	let w = m('222', true)(options);
 	// init
 	let same = 'set with edit strict=true';
 
@@ -88,11 +100,11 @@ test('set with edit strict=true, return set new value', t => {
 	t.is(res, same);
 });
 
-test.failing('set with create strict=true, throw', t => {
+test.failing('id:222 set with create strict=true, throw', t => {
 	let options = Object.assign({}, Options);
 
-	let w = m('123', true)(options);
-	// init
+	let w = m('222');
+	// get id
 	let setV = 'set with create strict=true, throw';
 
 	let res = w.set('c.s', setV);

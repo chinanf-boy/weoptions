@@ -3,18 +3,21 @@ const diff = require('deep-diff');
 const delve = require('dlv');
 const dset = require('dset');
 
+let GLOBAL = {};
+
 module.exports = (id, strict = false) => {
 	if (typeof id !== 'string') {
 		throw new TypeError(`Expected a string, got ${typeof id}`);
+	}
+	if (GLOBAL[id]) {
+		let W = GLOBAL[id];
+		return W;
 	}
 
 	function weoptions(options) {
 		this.id = id;
 		this.options = options;
 		this.S = strict;
-		if (this.S) {
-			this.v = 1;
-		}
 	}
 
 	weoptions.prototype.set = function(details, value) {
@@ -35,7 +38,6 @@ module.exports = (id, strict = false) => {
 		}
 
 		if (willError.length) {
-			console.log();
 			throw new TypeError(JSON.stringify(willError, null, 2));
 		}
 
@@ -47,10 +49,15 @@ module.exports = (id, strict = false) => {
 		}
 		return delve(this.options, details);
 	};
+	weoptions.prototype._setStrict = function(bool) {
+		this.S = bool;
+	};
 
 	function setOptions(opts) {
 		let opt = Object.assign({}, opts);
-		return new weoptions(opt);
+		let w = new weoptions(opt);
+		GLOBAL[id] = w;
+		return w;
 	}
 	return setOptions;
 };
