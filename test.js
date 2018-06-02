@@ -111,3 +111,35 @@ test.failing('id:222 set with create strict=true, throw', t => {
 
 	t.is(res, setV);
 });
+
+test('id:1234 no options, just use export', t => {
+
+
+	let w = m('1234');
+	// init
+	let same = 'set with edit strict=true';
+
+	let res = w.set('a.b.c', same);
+	let r2 = w.get('a.b.c')
+	w._setStrict(true);
+
+
+	t.is(res, same);
+	t.is(r2, same);
+
+});
+
+test.failing('id:1234 no options strict=true, just use export', t => {
+
+	let w = m('1234',true);
+	// init
+
+	let same = 'set with edit strict=true';
+	w._setStrict(true)
+	let res = w.set('a.b.e', same);
+	let r2 = w.get('a.b.e')
+
+	t.is(res, same);
+	t.is(r2, same);
+
+});

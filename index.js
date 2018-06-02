@@ -11,18 +11,20 @@ module.exports = (id, strict = false) => {
 	}
 	if (GLOBAL[id]) {
 		let W = GLOBAL[id];
+		strict && (W._setStrict(strict))
 		return W;
 	}
 
 	function weoptions(options) {
 		this.id = id;
-		this.options = options;
+		this.options = Object.assign({},options);
 		this.S = strict;
 	}
 
 	weoptions.prototype.set = function(details, value) {
-		let changeOptions = Object.assign({}, this.options);
+		let changeOptions = JSON.parse(JSON.stringify(this.options))
 		let willError = [];
+
 		dset(changeOptions, details, value);
 
 		if (this.S) {
@@ -40,6 +42,8 @@ module.exports = (id, strict = false) => {
 		if (willError.length) {
 			throw new TypeError(JSON.stringify(willError, null, 2));
 		}
+
+		this.options = changeOptions
 
 		return value;
 	};
@@ -59,5 +63,37 @@ module.exports = (id, strict = false) => {
 		GLOBAL[id] = w;
 		return w;
 	}
+	setOptions.set = function(details, value) {
+		let w
+		if(GLOBAL[id]){
+			w = GLOBAL[id]
+		}else{
+			w = setOptions()
+		}
+		return w.set(details, value)
+	};
+	setOptions.get = function(details) {
+		let w
+		let opts = {}
+		if(GLOBAL[id]){
+			w = GLOBAL[id]
+		}else{
+			w = setOptions(opts)
+		}
+
+		return w.get(details)
+
+	};
+	setOptions._setStrict = function(strict) {
+		let w
+		let opts = {}
+		if(GLOBAL[id]){
+			w = GLOBAL[id]
+		}else{
+			w = setOptions(opts)
+		}
+		strict && (w._setStrict(strict))
+	};
+
 	return setOptions;
 };
