@@ -2,7 +2,7 @@
 
 > 我想要有个公共 `options`, 但可以通过不同的`ID`, just `init/get/set`
 
-[中文](./readme.md) | ~~[english](./readme.en.md)~~
+<!-- [中文](./readme.md) | ~~[english](./readme.en.md)~~ -->
 
 ## Install
 
@@ -12,6 +12,29 @@ npm install weoptions
 
 ```
 yarn add weoptions
+```
+
+## Demo
+
+[->example main.js other.js](./example/main.js)
+
+``` bash
+node example/main.js
+```
+
+> result
+
+```
+source:yobrave > in main.js get
+yobrave
+in main.js set > other
+
+in other.js, get
+other
+in other.js,set > yobrave
+
+after other.js set ,in main.js get >
+yobrave
 ```
 
 ## Usage
@@ -46,10 +69,14 @@ w.get();
 // or
 w.get('a.b.c');
 // 2
+
+// also you can, or no
+module.exports = w
 ```
 
 ```js
 // other.js
+// use the lib, no index.js exports
 const weoptions = require('weoptions')('id'); // after init
 
 w.get();

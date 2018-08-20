@@ -15,9 +15,8 @@
 		"node": ">=4"
 	},
 	"scripts": {
-		"test": "nyc ava -v -s",
+		"test": "npm run build && nyc ava -v -s",
 		"build": "microbundle",
-		"prepublish": "npm run build",
 		"precommit": "lint-staged",
 		"npmUp": "npm version patch && npm publish",
 		"git": "git push && git push --tags",
@@ -53,7 +52,8 @@
 		"lint-staged": "^7.0.0",
 		"microbundle": "^0.4.4",
 		"nyc": "^11.8.0",
-		"prettier": "^1.12.1"
+		"prettier": "^1.12.1",
+		"turbocolor": "^2.6.0"
 	},
 	"nyc": {
 		"reporter": [
